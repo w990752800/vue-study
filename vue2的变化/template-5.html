@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+    <div id='box'>
+        <aaa></aaa>
+        <bbb></bbb>
+        <ccc></ccc>
+    </div>
+
+
+
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+    <script>
+        var event = new Vue();
+
+        var A = {
+            template: `
+            <div>
+                <div>{{a}}</div>
+                <button @click="send">发送数据</button>
+                </div>
+            `,
+            data() {
+                return {
+                    a: '我是a组件的数据'
+                }
+            },
+            methods: {
+                send() {
+                    event.$emit('a-msg', this.a)
+                }
+            }
+        }
+        var B = {
+            template: {
+                data() {
+                    return {
+                        a: '我是b组件的数据'
+                    }
+                }
+            }
+        }
+        var C = {
+            template: `
+                <div>
+                    
+                    </div>
+            `,
+            mounted() {
+                event.$on('a-msg', function(a) {
+                    console.log(a);
+                }).bind(this);
+            }
+        }
+
+        new Vue({
+            el: '#box',
+            components: {
+                'aaa': A,
+                'bbb': B,
+                'ccc': C
+            }
+        })
+    </script>
+</body>
+
+</html>
