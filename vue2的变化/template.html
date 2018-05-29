@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .red {
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="box">
+        {{msg}}
+        <div class="red" @click="con">11</div>
+    </div>
+
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+    <script>
+        window.onload = function() {
+
+            new Vue({
+                el: '#box',
+                data: {
+                    msg: 'wnf'
+                },
+                methods: {
+                    con() {
+                        console.log(111);
+                    }
+                }
+            })
+
+        }
+    </script>
+</body>
+
+</html>

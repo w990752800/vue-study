@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+    <script>
+        window.onload = function() {
+            //创建一个全局的组件
+            Vue.component('my-aaa', {
+                template: '#temp'
+            })
+            new Vue({
+                el: '.box',
+                data: {
+                    msg: 'wnf'
+                }
+            })
+        }
+    </script>
+</head>
+
+<body>
+    <template id="temp">
+        <div>
+            <h2>我是其他组件</h2>
+        </div>
+    </template>
+
+    <div class="box">
+        <my-aaa></my-aaa>
+        {{msg}}
+    </div>
+</body>
+
+</html>
