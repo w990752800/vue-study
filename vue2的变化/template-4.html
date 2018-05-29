@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+    <div id='box'>
+        {{gitData.a}}
+        <my-child :msg="gitData"></my-child>
+
+    </div>
+    <template id='temp'>
+        <div>
+            <h1>我是子组件</h1>
+            <strong>{{msg.a}}</strong>
+            <button @click='change'>点我</button>
+        </div>
+    </template>
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+    <script>
+        new Vue({
+            el: '#box',
+            data: {
+                gitData: {
+                    a: '我是父组件的数据'
+                }
+            },
+            components: {
+                'my-child': {
+                    props: ['msg'],
+                    template: '#temp',
+                    methods: {
+                        change() {
+                            this.msg.a = '被改变了'
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
