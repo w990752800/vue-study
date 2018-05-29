@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div class="box">
+        <button @click='update'>点击</button> {{msg}}
+        <button @click='xiaohui'>点击销毁</button>
+    </div>
+
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+    <script>
+        var app = new Vue({
+            el: '.box',
+            data: {
+                msg: 'wnf'
+            },
+            methods: {
+                update() {
+                    this.msg = '我被更新 了'
+                },
+                xiaohui() {
+
+                }
+            },
+            //实例创建前
+            beforeCreate() {
+                console.log('实例创建前')
+            },
+            created() {
+                console.log('实例刚刚被创建')
+            },
+            beforeMount() {
+                console.log('模板编译前')
+            },
+            mounted() {
+                console.log('模板编译后')
+            },
+            beforeUpdate() {
+                console.log('组件更新之前')
+            },
+            updated() {
+                setTimeout(() => {
+                    console.log('组件更新之后')
+                }, 2000);
+            },
+            beforyDestory() {
+                console.log('组件销毁之前')
+            },
+            destoryed() {
+                console.log('组件销毁之后')
+            }
+        })
+    </script>
+</body>
+
+</html>
