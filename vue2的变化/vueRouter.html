@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+    <div class="box">
+        <div>
+            <router-link to='/Home'>首页</router-link>
+            <router-link to='/News'>新闻业</router-link>
+        </div>
+        <div>
+            <router-view></router-view>
+        </div>
+
+
+    </div>
+
+
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+    <script src="../node_modules/vue-router/dist/vue-router.min.js"></script>
+    <script>
+        var Home = {
+            template: '<h3>我是首页</h3>'
+        };
+        var News = {
+            template: `
+                <div>
+                    <h3>我是新闻页</h3>
+                    <router-link to='/News/username'>某个用户</router-link>
+                    <router-view></router-view>
+                    </div>
+            `
+        }
+        var Userdetail = {
+            template: '<h5>我是小明</h5>'
+        }
+
+        var routes = [{
+            path: '/Home',
+            component: Home
+        }, {
+            path: '/News',
+            component: News,
+            children: [{
+                path: 'username',
+                component: Userdetail
+            }]
+        }, {
+            path: '*',
+            redirect: '/Home'
+        }];
+
+        var router = new VueRouter({
+            routes: routes
+        });
+
+        new Vue({
+            el: '.box',
+            router: router
+        })
+    </script>
+</body>
+
+</html>
