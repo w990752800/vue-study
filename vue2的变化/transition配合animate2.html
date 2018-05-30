@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="animate.css">
+    <style>
+        p {
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="box">
+        <input type="text" v-model="show">
+        <transition-group enter-active-class="zoomInLeft" leave-active-class="zoomOutRight">
+            <p class="animated" v-for="(val,index) in lists" :key="index">{{val}}</p>
+        </transition-group>
+    </div>
+
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+    <script>
+        window.onload = function() {
+            new Vue({
+                el: '.box',
+                data: {
+                    show: "",
+                    list: ['ac', 'b', 'aa', 'c', 'd']
+                },
+                computed: {
+                    lists: function() {
+                        var arr = [];
+                        this.list.forEach(function(val) {
+                            if (val.indexOf(this.show) != -1) {
+                                arr.push(val);
+                            }
+                        }.bind(this));
+                        return arr;
+                    }
+                }
+            })
+        }
+    </script>
+</body>
+
+</html>
